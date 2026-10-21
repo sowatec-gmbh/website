@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="de" data-stil="2">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ingenieurbüro SOWATEC GmbH</title>
+<meta name="description" content="Ingenieurbüro SOWATEC GmbH, Theisseil/Letzau: Wärmenetze und kommunale Wärmeplanung, Fachplanung HLS und Elektro, Brandschutz, Energieberatung. Seit 1988.">
+<link rel="icon" href="img/sowatec-logo-klein.png">
+<style>
+@font-face{font-family:"SW";src:url(fonts/carlito-regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"SW";src:url(fonts/carlito-bold.woff2) format("woff2");font-weight:700;font-display:swap}
+/* Konzept: helle Seite, große fette Titel, Blau trägt, Orange setzt Punkte (wie die Präsentationen) */
+:root{
+  color-scheme:light;
+  --blau:#0044aa; --blau2:#0469c4; --tief:#0c2340; --text:#1b2433; --grau:#5a6474;
+  --hb50:#f2f6fc; --hb100:#e3eefa; --hb200:#cfe2f5; --hb400:#96c0ea;
+  --orange:#f08a24; --weiss:#fff; --rand:#dfe7f2;
+  --font:"SW", Calibri, Carlito, "Segoe UI", system-ui, sans-serif;
+  --r:16px; --r2:24px; --schatten:0 1px 2px rgba(12,35,64,.06),0 8px 24px rgba(12,35,64,.07);
+  --max:1200px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--weiss);color:var(--text);font:400 18px/1.55 var(--font);-webkit-text-size-adjust:100%}
+img{max-width:100%;display:block}
+a{color:var(--blau)}
+:focus-visible{outline:2px solid var(--blau2);outline-offset:3px}
+h1,h2,h3{margin:0;font-weight:700;color:var(--tief);text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(32px,4.4vw,48px);line-height:1.08}
+h3{font-size:22px;line-height:1.2}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+section{padding-block:88px}
+.marke{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blau);margin-bottom:14px}
+.marke:before{content:"";width:10px;height:10px;border-radius:50%;background:var(--orange)}
+.lead{color:var(--grau);max-width:640px;margin:14px 0 40px;font-size:19px}
+.knopf{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;background:var(--blau);color:#fff;text-decoration:none;font-weight:700;transition:transform .15s,background .15s}
+.knopf:hover{background:var(--tief);transform:translateY(-1px)}
+.knopf.hell{background:#fff;color:var(--blau)}
+.knopf.rand{background:transparent;color:var(--blau);box-shadow:inset 0 0 0 2px var(--blau)}
+
+/* Vorschau-Leiste */
+.vorschau{background:#fff6cc;border-bottom:1px solid #e6d27a;font-size:14px;padding-block:8px;position:relative;z-index:20}
+.vorschau .wrap{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.vorschau button{font:inherit;border:1px solid #7a6200;background:#fff;color:#5a4a00;padding:3px 12px;border-radius:999px;cursor:pointer}
+.vorschau button[aria-pressed=true]{background:#5a4a00;color:#fff}
+
+/* Kopf */
+.kopf{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--rand)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:11;background:#fff}
+.kopf .wrap{display:flex;align-items:center;gap:24px;padding-block:10px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--tief);flex-shrink:0}
+.logo img{width:58px;height:auto}
+.logo span{display:block;font-weight:700;font-size:20px;letter-spacing:.04em}
+.logo small{display:block;font-weight:400;letter-spacing:0;font-size:13px;color:var(--grau);margin-bottom:-3px}
+.kopf nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.kopf nav a{padding:8px 12px;border-radius:999px;text-decoration:none;color:var(--text);font-size:16px;white-space:nowrap}
+.kopf nav a:hover{background:var(--hb100);color:var(--blau)}
+.kopf .knopf{padding:9px 18px;font-size:16px}
+
+/* Einstieg – Grundform */
+.einstieg{padding-block:0}
+.held{display:grid;gap:24px}
+.held h1{font-size:clamp(42px,6.4vw,78px);line-height:1.02;letter-spacing:-.02em}
+.held h1 em{font-style:normal;color:var(--blau)}
+.held .text p{font-size:20px;color:var(--grau);max-width:540px;margin:22px 0 30px}
+.held .knoepfe{display:flex;gap:12px;flex-wrap:wrap}
+.held .foto{background:center/cover no-repeat;min-height:340px}
+.fakten{display:flex;gap:28px;flex-wrap:wrap;margin-top:36px}
+.fakt b{display:block;font-size:40px;line-height:1;color:var(--blau)}
+.fakt span{font-size:15px;color:var(--grau)}
+
+/* Stil 1 – Sonne: dunkle Titelfläche mit Foto rechts */
+[data-stil="1"] .einstieg{background:var(--tief);color:#fff}
+[data-stil="1"] .einstieg{position:relative;overflow:hidden}
+[data-stil="1"] .held{grid-template-columns:1fr;min-height:580px;align-items:center}
+[data-stil="1"] .held .text{padding:84px 0 72px;max-width:min(560px,48vw)}
+[data-stil="1"] .held h1{color:#fff}
+[data-stil="1"] .held h1 em{color:var(--orange)}
+[data-stil="1"] .held .text p{color:#c9d6e8}
+[data-stil="1"] .held .foto{position:absolute;top:0;bottom:0;right:0;width:46vw;min-height:0;border-radius:0 0 0 120px}
+[data-stil="1"] .fakt b{color:#fff} [data-stil="1"] .fakt span{color:#a9bbd3}
+[data-stil="1"] .held .knopf.rand{color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.6)}
+
+/* Stil 2 – Licht: Foto über die ganze Breite, Text darauf, Sonnenkreis */
+[data-stil="2"] .einstieg{position:relative;overflow:hidden}
+[data-stil="2"] .held{position:relative;min-height:600px;grid-template-columns:1fr;align-items:center}
+[data-stil="2"] .held .foto{position:absolute;inset:0;margin:0 calc(-50vw + 50%);min-height:0}
+[data-stil="2"] .held .foto:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,35,64,.88) 0%,rgba(12,35,64,.55) 45%,rgba(12,35,64,0) 80%)}
+[data-stil="2"] .held .text{position:relative;padding-block:96px;max-width:620px}
+[data-stil="2"] .held h1,[data-stil="2"] .fakt b{color:#fff}
+[data-stil="2"] .held h1 em{color:#ffd29a}
+[data-stil="2"] .held .text p,[data-stil="2"] .fakt span{color:#dbe6f5}
+[data-stil="2"] .held .knopf.rand{color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.7)}
+[data-stil="2"] .einstieg:after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;right:-120px;bottom:-200px;background:radial-gradient(circle,var(--orange) 0 38%,rgba(240,138,36,.25) 39% 60%,transparent 61%);opacity:.9;pointer-events:none}
+
+/* Stil 3 – Kacheln: Bento-Raster */
+[data-stil="3"] .einstieg{padding-block:28px 0}
+[data-stil="3"] .held{grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(150px,auto);gap:16px}
+[data-stil="3"] .held .text{grid-column:1/3;grid-row:1/3;background:var(--hb100);border-radius:var(--r2);padding:48px 44px;display:flex;flex-direction:column;justify-content:center}
+[data-stil="3"] .held .foto{grid-column:3/5;grid-row:1/2;border-radius:var(--r2);min-height:260px}
+[data-stil="3"] .fakten{display:contents}
+[data-stil="3"] .fakt{border-radius:var(--r2);padding:26px;display:flex;flex-direction:column;justify-content:flex-end}
+[data-stil="3"] .fakt:nth-child(1){background:var(--blau)} [data-stil="3"] .fakt:nth-child(1) b,[data-stil="3"] .fakt:nth-child(1) span{color:#fff}
+[data-stil="3"] .fakt:nth-child(2){background:var(--orange)} [data-stil="3"] .fakt:nth-child(2) b,[data-stil="3"] .fakt:nth-child(2) span{color:#2b1500}
+[data-stil="3"] .fakt:nth-child(3){display:none}
+[data-stil="3"] .fakt b{font-size:56px}
+
+/* Leistungen */
+.karten{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.karte{background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:var(--schatten);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.karte:hover{transform:translateY(-4px);box-shadow:0 2px 4px rgba(12,35,64,.06),0 18px 40px rgba(12,35,64,.12)}
+.karte .bild{aspect-ratio:16/10;background:center/cover no-repeat;transition:transform .5s}
+.karte:hover .bild{transform:scale(1.04)}
+.karte .bildrahmen{overflow:hidden}
+.karte .inhalt{padding:22px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
+.karte .kurz{color:var(--grau);margin:0}
+.karte ul{margin:6px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.karte li{font-size:14px;background:var(--hb50);color:var(--blau);padding:4px 10px;border-radius:999px}
+[data-stil="3"] .karte{box-shadow:none;background:var(--hb50);border-radius:var(--r2)}
+[data-stil="3"] .karte li{background:#fff}
+[data-stil="2"] #leistungen{background:var(--hb50)}
+
+/* Referenzen */
+#referenzen{background:var(--hb50)}
+[data-stil="2"] #referenzen{background:#fff}
+.dash{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:56px}
+.kachel{background:#fff;border-radius:var(--r);padding:22px 24px;box-shadow:var(--schatten);min-width:0}
+[data-stil="2"] .kachel{background:var(--hb50);box-shadow:none}
+.kachel.zahl b{display:block;font-size:52px;line-height:1;color:var(--blau);font-variant-numeric:tabular-nums}
+.kachel.zahl span{color:var(--grau);font-size:16px}
+.kachel.zahl:nth-child(2) b{color:var(--orange)}
+.kachel.breit{grid-column:span 2}
+.kachel h3{font-size:18px;margin-bottom:16px}
+.balken{display:grid;grid-template-columns:minmax(0,170px) 1fr 36px;gap:10px 12px;align-items:center;font-size:15px}
+.balken .spur{height:12px;background:var(--hb100);border-radius:999px;overflow:hidden}
+.balken .b{height:100%;background:var(--blau2);border-radius:999px;width:var(--w);transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.balken.o .b{background:var(--orange)}
+.balken .w{text-align:right;font-variant-numeric:tabular-nums;color:var(--grau)}
+.listenkopf{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.listenkopf h3{font-size:28px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font:inherit;font-size:15px;border:0;background:#fff;color:var(--blau);padding:7px 16px;border-radius:999px;cursor:pointer;box-shadow:inset 0 0 0 1px var(--hb200)}
+[data-stil="2"] .chips button{background:var(--hb50)}
+.chips button:hover{box-shadow:inset 0 0 0 1px var(--blau2)}
+.chips button[aria-pressed=true]{background:var(--blau);color:#fff;box-shadow:none}
+.liste{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.liste li{background:#fff;border-radius:12px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;box-shadow:0 1px 2px rgba(12,35,64,.06);min-width:0}
+[data-stil="2"] .liste li{background:var(--hb50);box-shadow:none}
+.liste li:before{content:"";flex:0 0 10px;height:10px;border-radius:50%;background:var(--farbe,var(--blau2));margin-top:8px}
+.liste .art{display:block;font-size:14px;color:var(--grau)}
+.lauf{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:var(--orange);color:#2b1500;padding:2px 8px;border-radius:999px;margin-left:8px;vertical-align:2px}
+.mehr{margin-top:18px;font:inherit;font-weight:700;cursor:pointer;border:0}
+.privat{margin:14px 0 0;color:var(--grau);font-size:16px}
+.unter{font-size:28px;margin:64px 0 16px}
+.dekaden{display:grid;gap:10px}
+details.dekade{background:#fff;border-radius:12px;box-shadow:0 1px 2px rgba(12,35,64,.06)}
+[data-stil="2"] details.dekade{background:var(--hb50);box-shadow:none}
+details.dekade summary{cursor:pointer;padding:16px 20px;font-weight:700;font-size:20px;color:var(--tief);display:flex;justify-content:space-between;list-style:none}
+details.dekade summary::-webkit-details-marker{display:none}
+details.dekade summary:after{content:"+";color:var(--blau);font-size:24px;line-height:1}
+details.dekade[open] summary:after{content:"–"}
+details.dekade summary small{font-weight:400;color:var(--grau);font-size:16px;margin-left:10px}
+details.dekade ul{margin:0;padding:0 20px 18px;list-style:none;columns:2 280px;column-gap:28px}
+details.dekade li{padding:3px 0;break-inside:avoid}
+.jahr{color:var(--orange);font-weight:700;font-variant-numeric:tabular-nums;margin-right:10px}
+.vorschlag{background:#fff6cc;font-size:12px;padding:1px 6px;border-radius:4px;margin-left:6px;color:#5a4a00;white-space:nowrap}
+
+/* Team */
+.team{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+.person{background:var(--hb50);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.kreis{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:22px;color:#fff;background:var(--blau);margin-bottom:6px}
+.person:nth-child(2n) .kreis{background:var(--orange);color:#2b1500}
+.person h3{font-size:22px}
+.person p{margin:0;font-size:15px;color:var(--grau)}
+.person a{font-size:15px;margin-top:auto;padding-top:6px;overflow-wrap:anywhere}
+[data-stil="2"] #team{background:var(--hb50)} [data-stil="2"] .person{background:#fff}
+
+/* Karriere */
+.karriere{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.karriere .bild{aspect-ratio:4/3;background:center/cover no-repeat;border-radius:var(--r2)}
+.vorteile{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;padding:0;list-style:none}
+.vorteile li{background:var(--hb100);color:var(--blau);padding:6px 14px;border-radius:999px;font-size:15px}
+details.stelle{background:#fff;border-radius:var(--r);margin-bottom:12px;box-shadow:var(--schatten)}
+details.stelle summary{cursor:pointer;padding:18px 22px;font-weight:700;font-size:21px;color:var(--tief);list-style:none;display:flex;justify-content:space-between;gap:12px}
+details.stelle summary::-webkit-details-marker{display:none}
+details.stelle summary:after{content:"+";color:var(--orange);font-size:26px;line-height:1}
+details.stelle[open] summary:after{content:"–"}
+details.stelle .in{padding:0 22px 20px}
+details.stelle h4{margin:10px 0 4px;font-size:16px;color:var(--blau)}
+details.stelle ul{margin:0;padding-left:20px}
+
+/* Kontakt */
+.kontakt{background:var(--blau);color:#fff;border-radius:var(--r2);padding:56px;display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center;position:relative;overflow:hidden}
+.kontakt:after{content:"";position:absolute;width:300px;height:300px;border-radius:50%;right:-90px;top:-110px;background:var(--orange);opacity:.95}
+.kontakt h2{color:#fff}
+.kontakt p{color:#dbe6f5;margin:12px 0 0}
+.kontaktwege{display:grid;gap:12px;position:relative;z-index:1}
+.weg{background:rgba(255,255,255,.12);border-radius:14px;padding:14px 18px;color:#fff;text-decoration:none;display:block}
+.weg small{display:block;color:#b9cdea;font-size:14px}
+.weg b{font-size:22px}
+a.weg:hover{background:rgba(255,255,255,.2)}
+[data-stil="1"] .kontakt{background:var(--tief)}
+
+/* Fuß */
+footer{padding-block:48px 40px;font-size:15px;color:var(--grau)}
+footer .spalten{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:24px}
+footer b{display:block;color:var(--tief);margin-bottom:6px}
+footer .unten{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:36px;padding-top:20px;border-top:1px solid var(--rand)}
+footer img{width:70px;margin-bottom:10px}
+.recht{display:none;padding-block:56px;border-top:1px solid var(--rand)}
+.recht:target{display:block}
+.recht h2{font-size:34px;margin-bottom:18px} .recht h3{font-size:20px;margin:22px 0 6px}
+.recht p{max-width:760px;margin:0 0 10px}
+.entwurf{background:#fff6cc;padding:8px 12px;display:inline-block;margin-bottom:16px;font-size:15px;border-radius:6px}
+
+/* sanftes Einblenden */
+@media (prefers-reduced-motion:no-preference){
+  .auf{animation:auf .7s cubic-bezier(.2,.8,.2,1) both}
+  .auf2{animation:auf .7s .12s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes auf{from{transform:translateY(14px);opacity:.01}to{transform:none;opacity:1}}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+
+@media (max-width:1000px){
+  .karten{grid-template-columns:1fr 1fr}
+  .dash{grid-template-columns:1fr 1fr}
+  .kachel.breit{grid-column:span 2}
+  [data-stil="1"] .held{min-height:0;padding-left:0;padding-right:0}
+  [data-stil="1"] .held .text{padding:48px max(20px,env(safe-area-inset-right,0px)) 52px max(20px,env(safe-area-inset-left,0px));max-width:none}
+  [data-stil="1"] .held .foto{position:static;width:auto;min-height:280px;order:-1;border-radius:0 0 0 72px}
+  [data-stil="3"] .held{grid-template-columns:1fr 1fr}
+  [data-stil="3"] .held .text{grid-column:1/3;grid-row:auto}
+  [data-stil="3"] .held .foto{grid-column:1/3;grid-row:auto}
+  .karriere,.kontakt{grid-template-columns:1fr}
+  footer .spalten{grid-template-columns:1fr 1fr}
+  .kopf .knopf{display:none}
+}
+@media (max-width:640px){
+  body{font-size:17px}
+  section{padding-block:60px}
+  .karten,.liste{grid-template-columns:1fr}
+  .dash{grid-template-columns:1fr 1fr;gap:12px}
+  .kachel{padding:18px}
+  .kachel.zahl b{font-size:40px}
+  .kachel.breit{grid-column:1/-1}
+  .balken{grid-template-columns:minmax(0,120px) 1fr 30px;font-size:14px}
+  .logo small{display:none}
+  .kopf .wrap{gap:12px}
+  .kopf nav a{padding:8px 8px;font-size:15px}
+  .kontakt{padding:36px 24px}
+  .held .foto{min-height:240px}
+  [data-stil="2"] .held{min-height:520px}
+  [data-stil="2"] .held .foto:after{background:linear-gradient(180deg,rgba(12,35,64,.55),rgba(12,35,64,.85))}
+  [data-stil="3"] .held .text{padding:32px 24px}
+  [data-stil="3"] .fakt b{font-size:42px}
+  footer .spalten{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<!--VORSCHAU-->
+
+<header class="kopf"><div class="wrap">
+  <a class="logo" href="#"><img src="img/sowatec-logo-web.png" alt="" width="58" height="42"><div><small>Ingenieurbüro</small><span>SOWATEC GmbH</span></div></a>
+  <nav aria-label="Hauptnavigation"><a href="#leistungen">Leistungen</a><a href="#referenzen">Referenzen</a><a href="#team">Team</a><a href="#karriere">Karriere</a><a href="#kontakt">Kontakt</a></nav>
+  <a class="knopf" href="#kontakt">Projekt anfragen</a>
+</div></header>
+
+<main>
+<section class="einstieg"><div class="wrap held">
+  <div class="text auf">
+    <div class="marke">Ingenieurbüro seit 1988</div>
+    <h1>Energie und Technik <em>neu gedacht.</em></h1>
+    <p>Wärmenetze, Gebäudetechnik, Brandschutz und Energieberatung aus einer Hand – für Kommunen, Wohnungsbau, Gewerbe und private Bauherren in der Oberpfalz und darüber hinaus.</p>
+    <div class="knoepfe"><a class="knopf" href="#leistungen">Unsere Leistungen</a><a class="knopf rand" href="#referenzen">Referenzen ansehen</a></div>
+    <div class="fakten" id="fakten"></div>
+  </div>
+  <div class="foto auf2" style="background-image:url(img/hero.jpg)" role="img" aria-label="Haus im Gegenlicht der Sonne"></div>
+</div></section>
+
+<section id="leistungen"><div class="wrap">
+  <div class="marke">Leistungen</div>
+  <h2>Was wir für Sie planen</h2>
+  <p class="lead">Von der ersten Analyse bis zur Umsetzung – mit kurzen Wegen und festen Ansprechpartnern.</p>
+  <div class="karten">
+    <article class="karte"><div class="bildrahmen"><div class="bild" style="background-image:url(img/waerme.jpg)"></div></div><div class="inhalt">
+      <h3>Wärmenetze und kommunale Wärmeplanung</h3><p class="kurz">Nachhaltige Wärme für Kommunen und Quartiere – von der Machbarkeitsstudie bis zur technischen Planung.</p>
+      <ul><li>Wärmeplanung</li><li>Quartierskonzepte</li><li>Biomasse und Abwärme</li><li>Machbarkeitsstudien</li></ul></div></article>
+    <article class="karte"><div class="bildrahmen"><div class="bild" style="background-image:url(img/hls.jpg)"></div></div><div class="inhalt">
+      <h3>Heizung, Lüftung, Sanitär</h3><p class="kurz">Vollständige Fachplanung nach HOAI, wirtschaftlich und energieeffizient, im Bestand wie im Neubau.</p>
+      <ul><li>Heiz- und Kühllast</li><li>Rohr- und Kanalnetze</li><li>hydraulischer Abgleich</li><li>BIM</li></ul></div></article>
+    <article class="karte"><div class="bildrahmen"><div class="bild" style="background-image:url(img/elektro.jpg)"></div></div><div class="inhalt">
+      <h3>Elektro</h3><p class="kurz">Stark- und Schwachstrom nach aktuellen Normen, mit Blick auf PV, Speicher und Ladeinfrastruktur.</p>
+      <ul><li>Energieverteilung</li><li>Beleuchtung</li><li>Notstrom</li><li>PV und Laden</li></ul></div></article>
+    <article class="karte"><div class="bildrahmen"><div class="bild" style="background-image:url(img/brandschutz.jpg)"></div></div><div class="inhalt">
+      <h3>Brandschutz</h3><p class="kurz">Vorbeugender und technischer Brandschutz durch zertifizierte Sachverständige, abgestimmt mit den Behörden.</p>
+      <ul><li>Brandschutzkonzepte</li><li>Nachweise</li><li>Sonderbauten</li><li>Brandschutzpläne</li></ul></div></article>
+    <article class="karte"><div class="bildrahmen"><div class="bild" style="background-image:url(img/energie.jpg)"></div></div><div class="inhalt">
+      <h3>Energieberatung und Förderung</h3><p class="kurz">Unabhängige Beratung mit Fördermittelservice – wir stellen die Anträge und begleiten die Umsetzung.</p>
+      <ul><li>iSFP</li><li>BEG und KfW</li><li>Energieausweise</li><li>Baubegleitung</li></ul></div></article>
+    <article class="karte"><div class="bildrahmen"><div class="bild" style="background-image:url(img/gebaeude.jpg)"></div></div><div class="inhalt">
+      <h3>Nachhaltige Gebäudekonzepte</h3><p class="kurz">Ganzheitliche Konzepte für Komfort und Effizienz, in enger Abstimmung mit Architektur und Technik.</p>
+      <ul><li>thermische Simulation</li><li>sommerlicher Wärmeschutz</li><li>Feuchte und Schall</li></ul></div></article>
+  </div>
+</div></section>
+
+<section id="referenzen"><div class="wrap">
+  <div class="marke">Referenzen</div>
+  <h2>Projekte seit 1988</h2>
+  <p class="lead">Die Zahlen kommen direkt aus unserem Projektarchiv und sind immer aktuell.</p>
+  <div class="dash" id="dash"></div>
+  <div class="listenkopf"><h3>Referenzprojekte</h3><div class="chips" id="chips" role="group" aria-label="Nach Leistung filtern"></div></div>
+  <ul class="liste" id="liste"></ul>
+  <button type="button" class="knopf rand mehr" id="mehr" hidden></button>
+  <p class="privat" id="privat"></p>
+  <h3 class="unter">Auswahl 1988 bis 2021</h3>
+  <div class="dekaden" id="historie"></div>
+</div></section>
+
+<section id="team"><div class="wrap">
+  <div class="marke">Team</div>
+  <h2>Kurze Wege, feste Ansprechpartner</h2>
+  <p class="lead">Ein kleines Büro mit langer Erfahrung – Sie sprechen immer direkt mit den Leuten, die planen.</p>
+  <div class="team">
+    <div class="person"><div class="kreis">PE</div><h3>Patrick Eger</h3><p>Dipl.-Ing. Maschinenbau (TU Dresden) · HLS, Energieeffizienz, BIM · Effizienzhausplaner und Effizienzexperte Nichtwohngebäude (EIPOS)</p><a href="mailto:patrick.eger@sowatec.net">patrick.eger@sowatec.net</a></div>
+    <div class="person"><div class="kreis">RE</div><h3>Reinhold Eger</h3><p>Dipl.-Ing. (FH) Maschinenbau (OTH Regensburg) · KWK, PV, HLS, Brandschutz · Sachverständiger für vorbeugenden und technischen Brandschutz (EIPOS)</p><a href="mailto:reinhold.eger@sowatec.net">reinhold.eger@sowatec.net</a></div>
+    <div class="person"><div class="kreis">AW</div><h3>Andreas Wild</h3><p>Elektro, MSR, Licht · seit über 30 Jahren im Unternehmen</p><a href="mailto:andreas.wild@sowatec.net">andreas.wild@sowatec.net</a></div>
+    <div class="person"><div class="kreis">ME</div><h3>Marija Eger</h3><p>Buchhaltung und Verwaltung · Förderanträge · Abrechnungen im Wohnungsbau</p><a href="mailto:marija.eger@sowatec.net">marija.eger@sowatec.net</a></div>
+    <div class="person"><div class="kreis">AH</div><h3>Anna Hösl</h3><p>Studentin im Bereich Wirtschaftsingenieurwesen</p><a href="mailto:anna.hoesl@sowatec.net">anna.hoesl@sowatec.net</a></div>
+    <div class="person"><div class="kreis">ZY</div><h3>Ziad Younis</h3><p>Student im Bereich Gebäudeklimatik</p></div>
+  </div>
+</div></section>
+
+<section id="karriere" style="background:var(--hb50)"><div class="wrap">
+  <div class="karriere">
+    <div>
+      <div class="marke">Karriere</div>
+      <h2>Vom Plan bis auf die Baustelle</h2>
+      <p class="lead" style="margin-bottom:22px">Wir suchen Planer und Handwerker. Bei uns arbeiten Sie eigenverantwortlich an abwechslungsreichen Projekten – im Büro, auf der Baustelle und an der Anlage.</p>
+      <ul class="vorteile"><li>eigene Projekte</li><li>kurze Wege zwischen Planung und Ausführung</li><li>Homeoffice für Planer nach Absprache</li><li>kleines Team</li></ul>
+      <details class="stelle"><summary>Monteure (w/m/d) Heizung, Lüftung, Sanitär und Elektro – gern mit Meister oder Techniker</summary><div class="in">
+        <h4>Aufgaben</h4><ul><li>Montage, Inbetriebnahme und Service von Anlagen der Heizungs-, Lüftungs-, Sanitär- und Elektrotechnik</li><li>moderne Technik wie Wärmepumpen, Photovoltaik und Speicher</li><li>mit Meister oder Techniker: Leitung von Montagen, Abnahmen und Abstimmung mit der Planung</li></ul>
+        <h4>Profil</h4><ul><li>abgeschlossene Ausbildung im SHK- oder Elektrohandwerk, z. B. Anlagenmechaniker SHK oder Elektroniker</li><li>gern Meister oder staatlich geprüfter Techniker</li><li>sorgfältige, selbstständige Arbeitsweise</li></ul></div></details>
+      <details class="stelle"><summary>Fachplaner (w/m/d) Gebäudetechnik</summary><div class="in">
+        <h4>Aufgaben</h4><ul><li>gesamter Planungsprozess und technische Auslegung</li><li>Zeichnung, 3D-Modell, BIM</li><li>Ausschreibung, Vergabe, Abrechnung</li><li>Bauleitung</li></ul>
+        <h4>Passt zu</h4><ul><li>Architekten und Bauingenieuren – gern mit Bauvorlageberechtigung</li><li>Hochbautechnikern und -zeichnern</li><li>Fachkräften aus HLS oder Elektro</li></ul></div></details>
+      <details class="stelle"><summary>Werkstudent (w/m/d) Gebäudetechnik und Energie</summary><div class="in">
+        <h4>Aufgaben</h4><ul><li>Baustellenbesuche und Protokolle</li><li>Planung Heizung, Lüftung, Sanitär und Elektro</li><li>Wärmenetze und technische Berechnungen</li><li>Energieberatungen</li></ul>
+        <h4>Profil</h4><ul><li>Studium z. B. Wirtschaftsingenieurwesen, Energie- und Gebäudetechnik, Maschinenbau</li><li>mindestens 10 Stunden pro Woche</li></ul></div></details>
+      <p>Bewerbung bitte an <a href="mailto:info@sowatec.net">info@sowatec.net</a>.</p>
+    </div>
+    <div class="bild" style="background-image:url(img/karriere.jpg)" role="img" aria-label="Team im Gegenlicht"></div>
+  </div>
+</div></section>
+
+<section id="kontakt"><div class="wrap">
+  <div class="kontakt">
+    <div style="position:relative;z-index:1"><h2>Projekt im Kopf?</h2><p>Rufen Sie an oder schreiben Sie uns – wir melden uns kurzfristig.</p></div>
+    <div class="kontaktwege">
+      <a class="weg" href="tel:+49961481880"><small>Telefon</small><b>0961 481880</b></a>
+      <a class="weg" href="mailto:info@sowatec.net"><small>E-Mail</small><b>info@sowatec.net</b></a>
+      <a class="weg" href="https://www.openstreetmap.org/search?query=Flurstra%C3%9Fe%2010%2C%2092637%20Theisseil" rel="noopener"><small>Anschrift · Route planen</small><b>Flurstraße 10, 92637 Theisseil/Letzau</b></a>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="spalten">
+    <div><img src="img/sowatec-logo-web.png" alt="SOWATEC Logo" width="70" height="51">Ingenieurbüro SOWATEC GmbH</div>
+    <div><b>Anschrift</b>Flurstraße 10<br>92637 Theisseil</div>
+    <div><b>Kontakt</b>Tel. 0961 481880<br>Fax 0961 4818833<br>info@sowatec.net</div>
+    <div><b>Geschäftsführer</b>Patrick Eger<br>Reinhold Eger</div>
+  </div>
+  <div class="unten"><span>© <span id="jahr">2026</span> SOWATEC GmbH · Referenzen Stand <span id="stand"></span></span><span><a href="#impressum">Impressum</a> · <a href="#datenschutz">Datenschutz</a></span></div>
+</div></footer>
+
+<section class="recht" id="impressum"><div class="wrap">
+  <h2>Impressum</h2>
+  <p>SOWATEC GmbH<br>Flurstraße 10, 92637 Theisseil</p>
+  <p>Vertreten durch die Geschäftsführer Patrick Eger und Reinhold Eger<br>Registergericht: Amtsgericht Weiden i.d.OPf., HRB 4781<br>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: DE 192537364</p>
+  <p>Telefon +49 961 481880 · Telefax +49 961 4818833 · E-Mail info@sowatec.net</p>
+  <p>Berufsbezeichnung: Ingenieur (verliehen in Deutschland)<br>Zuständige Kammer: Bayerische Ingenieurekammer-Bau, Schloßschmidstraße 3, 80639 München</p>
+  <p>Berufshaftpflichtversicherung: Allianz Versicherung AG, 10900 Berlin; Geltungsraum: Deutschland</p>
+  <p>Schrift: Carlito (SIL Open Font License), lokal eingebunden.</p>
+</div></section>
+
+<section class="recht" id="datenschutz"><div class="wrap">
+  <h2>Datenschutz</h2>
+  <div class="entwurf">ENTWURF – vor Veröffentlichung prüfen lassen. Keine Rechtsberatung.</div>
+  <h3>Verantwortlicher</h3>
+  <p>SOWATEC GmbH, Flurstraße 10, 92637 Theisseil, info@sowatec.net, Tel. 0961 481880.</p>
+  <h3>Keine Cookies, keine Analyse, keine fremden Inhalte</h3>
+  <p>Diese Website setzt keine Cookies, verwendet keine Analyse- oder Trackingwerkzeuge und lädt keine Schriften, Karten oder Skripte von fremden Servern.</p>
+  <h3>Hosting</h3>
+  <p>Die Website wird bei GitHub Pages (GitHub, Inc.) bereitgestellt. Beim Aufruf verarbeitet der Anbieter technisch notwendige Daten, insbesondere die IP-Adresse, zur Auslieferung und Absicherung der Seite (Art. 6 Abs. 1 lit. f DSGVO). Eine Übermittlung in die USA ist möglich; sie stützt sich auf den Angemessenheitsbeschluss zum EU-US Data Privacy Framework.</p>
+  <h3>Kontakt per E-Mail oder Telefon</h3>
+  <p>Wenn Sie uns kontaktieren, verarbeiten wir Ihre Angaben zur Bearbeitung der Anfrage (Art. 6 Abs. 1 lit. b bzw. f DSGVO) und löschen sie, sobald sie nicht mehr erforderlich sind und keine Aufbewahrungspflichten bestehen.</p>
+  <h3>Ihre Rechte</h3>
+  <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch sowie das Recht auf Beschwerde bei einer Aufsichtsbehörde, etwa dem Bayerischen Landesamt für Datenschutzaufsicht, Promenade 18, 91522 Ansbach.</p>
+</div></section>
+
+<script id="daten" type="application/json">/*DATEN*/</script>
+<script>
+(function(){
+const D=JSON.parse(document.getElementById('daten').textContent);
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const vs=D.vorschau?'<span class="vorschlag">Vorschlag</span>':'';
+const farbe={'Wärmenetze':'#f08a24','Studien und Wärmeplanung':'#f5b46a','TGA-Planung':'#0469c4','Energieberatung':'#2e9e6b','Brandschutz':'#c8453a'};
+$('stand').textContent=D.stand;
+$('jahr').textContent=new Date().getFullYear();
+// Einstieg: drei Fakten
+$('fakten').innerHTML=[D.zahlen[0],D.zahlen[1],D.zahlen[2]].map(z=>`<div class="fakt"><b>${esc(z.wert)}</b><span>${esc(z.text)}</span></div>`).join('');
+// Dashboard
+const max=Math.max(...D.leistungen.map(l=>l.anzahl)), maxA=Math.max(...D.auftraggeber.map(l=>l.anzahl));
+$('dash').innerHTML=D.zahlen.slice(2,6).map(z=>`<div class="kachel zahl"><b data-ziel="${esc(z.wert)}">${esc(z.wert)}</b><span>${esc(z.text)}</span></div>`).join('')+
+ `<div class="kachel breit"><h3>Projekte nach Leistung</h3><div class="balken">${D.leistungen.map(l=>`<span>${esc(l.name)}</span><div class="spur"><div class="b" style="--w:${(l.anzahl/max*100).toFixed(1)}%"></div></div><span class="w">${l.anzahl}</span>`).join('')}</div></div>`+
+ `<div class="kachel breit"><h3>Projekte nach Auftraggeber</h3><div class="balken o">${D.auftraggeber.map(l=>`<span>${esc(l.name)}</span><div class="spur"><div class="b" style="--w:${(l.anzahl/maxA*100).toFixed(1)}%"></div></div><span class="w">${l.anzahl}</span>`).join('')}</div></div>`;
+// Zahlen hochzählen, wenn sichtbar (Endwert steht von Anfang an da)
+const ruhig=matchMedia('(prefers-reduced-motion: reduce)').matches;
+if('IntersectionObserver' in window && !ruhig){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);
+    const el=e.target,t=el.dataset.ziel,m=t.match(/\d+/);if(!m)return;const ziel=+m[0],t0=performance.now();
+    const step=now=>{const p=Math.min(1,(now-t0)/900),v=Math.round(ziel*(1-Math.pow(1-p,3)));el.textContent=t.replace(m[0],v);if(p<1)requestAnimationFrame(step);};
+    requestAnimationFrame(step);}),{threshold:.6});
+  document.querySelectorAll('[data-ziel]').forEach(el=>io.observe(el));
+}
+// Liste mit Filter
+const arten=['Alle','Laufend',...D.leistungen.map(l=>l.name).filter(n=>D.aktuell.some(p=>p.leistung.includes(n)))];
+let filt='Alle', alle=false;
+const SICHTBAR=12;
+function liste(){
+  const treffer=D.aktuell.filter(p=>filt==='Alle'||(filt==='Laufend'?p.laufend:p.leistung.includes(filt)));
+  const zeigen=alle?treffer:treffer.slice(0,SICHTBAR);
+  $('liste').innerHTML=zeigen.map(p=>{
+    const f=farbe[Object.keys(farbe).find(k=>p.leistung.startsWith(k))]||'#0469c4';
+    const unter=[p.ort,p.leistung].filter(Boolean).join(' · ');
+    return `<li style="--farbe:${f}"><div>${esc(p.titel)}${p.laufend?'<span class="lauf">laufend</span>':''}<span class="art">${esc(unter)}</span></div></li>`;}).join('');
+  const mehr=$('mehr'); mehr.hidden=treffer.length<=SICHTBAR;
+  mehr.textContent=alle?'Weniger anzeigen':`Alle ${treffer.length} Projekte anzeigen`;
+}
+$('mehr').onclick=()=>{alle=!alle;liste();if(!alle)$('referenzen').scrollIntoView();};
+function chips(){ $('chips').innerHTML=arten.map(a=>`<button type="button" aria-pressed="${a===filt}">${esc(a)}</button>`).join('');
+  $('chips').querySelectorAll('button').forEach(b=>b.onclick=()=>{filt=b.textContent;alle=false;chips();liste();}); }
+if(D.aktuell.length){chips();liste();}else{document.querySelector('.listenkopf').hidden=true;$('liste').hidden=true;}
+$('privat').textContent=D.privatHinweis;
+const dek={};D.historie.forEach(([j,n])=>{const k=Math.floor(j/10)*10;(dek[k]=dek[k]||[]).push([j,n]);});
+const anzahl=l=>{const n=l.filter(([j,x])=>x!=='Unternehmensgründung').length;return n===0?'Gründung':n===1?'1 Projekt':n+' Projekte';};
+$('historie').innerHTML=Object.keys(dek).sort((a,b)=>b-a).map((k,i)=>`<details class="dekade"${i===0?' open':''}><summary><span>${k}er Jahre<small>${anzahl(dek[k])}</small></span></summary><ul>${dek[k].map(([j,n])=>`<li><span class="jahr">${j}</span>${esc(n)}</li>`).join('')}</ul></details>`).join('');
+// Vorschau: Stil wählen
+document.querySelectorAll('.vorschau button').forEach(b=>b.onclick=()=>{document.documentElement.dataset.stil=b.dataset.s;
+  document.querySelectorAll('.vorschau button').forEach(x=>x.setAttribute('aria-pressed',x===b));});
+})();
+</script>
+</body>
+</html>
