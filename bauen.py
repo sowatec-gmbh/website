@@ -20,6 +20,10 @@ import re, sys, json, base64, os, shutil, datetime
 HIER = os.path.dirname(os.path.abspath(__file__))
 LEISTUNGEN = [("Brandschutz", "Brandschutz"), ("TGA", "TGA-Planung"), ("Energieberatung", "Energieberatung"),
               ("Wärmenetz", "Wärmenetze"), ("Studie", "Studien und Wärmeplanung")]
+# Gesetzte Untergrenzen, solange das Projektarchiv unvollständig ist
+# (Patrick Eger, 2026-10-22: TGA-Projekte seit 1988 deutlich mehr als im Register).
+# Zählt das Register mehr, gilt die gezählte Zahl. Prüfen, sobald ältere Archive erfasst sind.
+MINDESTWERTE = {"TGA": 151}
 BLOCKNAME = {1: "Kommunen, öffentliche Hand", 2: "Wohnungsbau, Gewerbe", 3: "Private Bauherren"}
 KUERZEL = {"WEN": "Weiden", "NEW": "Neustadt a.d. Waldnaab", "TIR": "Tirschenreuth", "ESB": "Eschenbach",
            "VOH": "Vohenstrauß", "DD": "Dresden", "WIN": "Wunsiedel", "AM": "Amberg", "Neustadt": "Neustadt a.d. Waldnaab"}
@@ -103,9 +107,12 @@ def daten(reg, auswahl):
     n = len([r for r in reg if r["block"] in (1, 2, 3)])
     oeff = len({r["kreis"] for r in reg if r["block"] == 1})
     zaehl = {k: sum(1 for r in reg if k in r["leistung"]) for k, _ in LEISTUNGEN}
+    for k, mindest in MINDESTWERTE.items():
+        zaehl[k] = max(zaehl[k], mindest)
+    n = max(n, sum(zaehl.values()))
     zahlen = [
         dict(wert=str(heute.year - 1988), text="Jahre Erfahrung, gegründet 1988"),
-        dict(wert=f"über {(n // 10) * 10}", text="Projekte im Projektarchiv"),
+        dict(wert=f"über {(n // 10) * 10}", text="Projekte seit 1988"),
         dict(wert=str(oeff), text="Kommunen und öffentliche Auftraggeber"),
         dict(wert=str(zaehl["Brandschutz"]), text="Brandschutzprojekte"),
         dict(wert=str(zaehl["Energieberatung"]), text="Energieberatungen"),
