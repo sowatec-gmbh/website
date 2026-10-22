@@ -56,6 +56,13 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .kopf nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
 .kopf nav a{padding:8px 12px;border-radius:999px;text-decoration:none;color:var(--text);font-size:16px;white-space:nowrap}
 .kopf nav a:hover{background:var(--hb100);color:var(--blau)}
+.menue{display:none;margin-left:auto;width:44px;height:44px;border:0;border-radius:10px;background:transparent;cursor:pointer;position:relative}
+.menue span,.menue span:before,.menue span:after{position:absolute;left:11px;width:22px;height:2px;border-radius:2px;background:var(--tief);transition:transform .2s,opacity .2s}
+.menue span{top:21px}.menue span:before,.menue span:after{content:"";left:0}
+.menue span:before{top:-7px}.menue span:after{top:7px}
+.menue[aria-expanded=true] span{background:transparent}
+.menue[aria-expanded=true] span:before{transform:translateY(7px) rotate(45deg)}
+.menue[aria-expanded=true] span:after{transform:translateY(-7px) rotate(-45deg)}
 .kopf .knopf{padding:9px 18px;font-size:16px}
 
 /* Einstieg – Grundform */
@@ -85,9 +92,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 /* Stil 2 – Licht: Foto über die ganze Breite, Text darauf, Sonnenkreis */
 [data-stil="2"] .einstieg{position:relative;overflow:hidden}
 [data-stil="2"] .held{position:relative;min-height:600px;grid-template-columns:1fr;align-items:center}
-[data-stil="2"] .held .foto{position:absolute;inset:0;margin:0 calc(-50vw + 50%);min-height:0}
+[data-stil="2"] .held .foto{position:absolute;inset:0;z-index:0;margin:0 calc(-50vw + 50%);min-height:0}
 [data-stil="2"] .held .foto:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,35,64,.88) 0%,rgba(12,35,64,.55) 45%,rgba(12,35,64,0) 80%)}
-[data-stil="2"] .held .text{position:relative;padding-block:96px;max-width:620px}
+[data-stil="2"] .held .text{position:relative;z-index:1;padding-block:96px;max-width:620px}
 [data-stil="2"] .held h1,[data-stil="2"] .fakt b{color:#fff}
 [data-stil="2"] .held h1 em{color:#ffd29a}
 [data-stil="2"] .held .text p,[data-stil="2"] .fakt span{color:#dbe6f5}
@@ -247,7 +254,11 @@ footer img{width:70px;margin-bottom:10px}
   .balken{grid-template-columns:minmax(0,120px) 1fr 30px;font-size:14px}
   .logo small{display:none}
   .kopf .wrap{gap:12px}
-  .kopf nav a{padding:8px 8px;font-size:15px}
+  .menue{display:block}
+  .kopf .wrap{flex-wrap:wrap}
+  .kopf nav{display:none;flex-basis:100%;flex-direction:column;gap:2px;margin:6px 0 4px;overflow:visible}
+  .kopf.offen nav{display:flex}
+  .kopf nav a{padding:12px 14px;font-size:18px;border-radius:10px}
   .kontakt{padding:36px 24px}
   .held .foto{min-height:240px}
   [data-stil="2"] .held{min-height:520px}
@@ -263,7 +274,8 @@ footer img{width:70px;margin-bottom:10px}
 
 <header class="kopf"><div class="wrap">
   <a class="logo" href="#"><img src="img/sowatec-logo-web.png" alt="" width="58" height="42"><div><small>Ingenieurbüro</small><span>SOWATEC GmbH</span></div></a>
-  <nav aria-label="Hauptnavigation"><a href="#leistungen">Leistungen</a><a href="#referenzen">Referenzen</a><a href="#team">Team</a><a href="#karriere">Karriere</a><a href="#kontakt">Kontakt</a></nav>
+  <button class="menue" type="button" aria-expanded="false" aria-controls="hauptmenue" aria-label="Menü öffnen"><span></span></button>
+  <nav id="hauptmenue" aria-label="Hauptnavigation"><a href="#leistungen">Leistungen</a><a href="#referenzen">Referenzen</a><a href="#team">Team</a><a href="#karriere">Karriere</a><a href="#kontakt">Kontakt</a></nav>
   <a class="knopf" href="#kontakt">Projekt anfragen</a>
 </div></header>
 
@@ -449,6 +461,10 @@ $('privat').textContent=D.privatHinweis;
 const dek={};D.historie.forEach(([j,n])=>{const k=Math.floor(j/10)*10;(dek[k]=dek[k]||[]).push([j,n]);});
 const anzahl=l=>{const n=l.filter(([j,x])=>x!=='Unternehmensgründung').length;return n===0?'Gründung':n===1?'1 Projekt':n+' Projekte';};
 $('historie').innerHTML=Object.keys(dek).sort((a,b)=>b-a).map((k,i)=>`<details class="dekade"${i===0?' open':''}><summary><span>${k}er Jahre<small>${anzahl(dek[k])}</small></span></summary><ul>${dek[k].map(([j,n])=>`<li><span class="jahr">${j}</span>${esc(n)}</li>`).join('')}</ul></details>`).join('');
+// Klappmenü auf dem Handy
+const kopf=document.querySelector('.kopf'),mk=document.querySelector('.menue');
+mk.onclick=()=>{const auf=!kopf.classList.contains('offen');kopf.classList.toggle('offen',auf);mk.setAttribute('aria-expanded',auf);mk.setAttribute('aria-label',auf?'Menü schließen':'Menü öffnen');};
+document.querySelectorAll('#hauptmenue a').forEach(a=>a.addEventListener('click',()=>{kopf.classList.remove('offen');mk.setAttribute('aria-expanded','false');mk.setAttribute('aria-label','Menü öffnen');}));
 // Vorschau: Stil wählen
 document.querySelectorAll('.vorschau button').forEach(b=>b.onclick=()=>{document.documentElement.dataset.stil=b.dataset.s;
   document.querySelectorAll('.vorschau button').forEach(x=>x.setAttribute('aria-pressed',x===b));});
