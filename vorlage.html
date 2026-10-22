@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de" data-stil="2">
+<html lang="de" data-stil="2" data-held="verlauf">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -100,6 +100,32 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 [data-stil="2"] .held .text p,[data-stil="2"] .fakt span{color:#dbe6f5}
 [data-stil="2"] .held .knopf.rand{color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.7)}
 [data-stil="2"] .einstieg:after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;right:-120px;bottom:-200px;background:radial-gradient(circle,var(--orange) 0 38%,rgba(240,138,36,.25) 39% 60%,transparent 61%);opacity:.9;pointer-events:none}
+/* Startbild-Varianten (data-held) */
+.unsichtbar{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+[data-held="glas"] .held .text{margin-block:56px;padding:40px 44px;border-radius:24px;background:rgba(12,35,64,.42);-webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2);box-shadow:0 10px 40px rgba(0,0,0,.18)}
+[data-held="glas"] .held .foto:after{background:linear-gradient(90deg,rgba(12,35,64,.25),rgba(12,35,64,0) 70%)}
+[data-held="verlauf"] .held .foto:after{background:linear-gradient(90deg,rgba(12,35,64,.94) 0%,rgba(12,35,64,.86) 38%,rgba(12,35,64,.35) 62%,rgba(12,35,64,0) 85%)}
+[data-held="bild"] .held .text{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);padding:0}
+[data-held="bild"] .held .foto:after{display:none}
+[data-held="bild"] .held{min-height:clamp(320px,46vw,600px)}
+[data-held="unten"] .held{display:block;min-height:0}
+[data-held="unten"] .held .foto{position:relative;inset:auto;height:clamp(300px,44vw,560px)}
+[data-held="unten"] .held .foto:after{display:none}
+[data-held="unten"] .held .text{padding-block:56px 24px;max-width:none;display:grid;grid-template-columns:1.3fr 1fr;gap:12px 48px;align-items:end}
+[data-held="unten"] .held .text .marke{grid-column:1/-1}
+[data-held="unten"] .held h1{color:var(--tief)} [data-held="unten"] .held h1 em{color:var(--blau)}
+[data-held="unten"] .held .text p{color:var(--grau);margin:0}
+[data-held="unten"] .held .knoepfe{grid-column:1}
+[data-held="unten"] .fakten{grid-column:2;grid-row:3;margin-top:0}
+[data-held="unten"] .fakt b{color:var(--blau)} [data-held="unten"] .fakt span{color:var(--grau)}
+[data-held="unten"] .held .knopf.rand{color:var(--blau);box-shadow:inset 0 0 0 2px var(--blau)}
+[data-held="unten"] .einstieg:after{display:none}
+@media (max-width:640px){
+  [data-held="glas"] .held .text{margin-block:32px;padding:26px 22px}
+  [data-held="unten"] .held .text{grid-template-columns:1fr;padding-block:36px 8px}
+  [data-held="unten"] .fakten{grid-column:1;grid-row:auto}
+  [data-held="unten"] .held .foto{height:260px}
+}
 
 /* Stil 3 – Kacheln: Bento-Raster */
 [data-stil="3"] .einstieg{padding-block:28px 0}
@@ -466,8 +492,11 @@ const kopf=document.querySelector('.kopf'),mk=document.querySelector('.menue');
 mk.onclick=()=>{const auf=!kopf.classList.contains('offen');kopf.classList.toggle('offen',auf);mk.setAttribute('aria-expanded',auf);mk.setAttribute('aria-label',auf?'Menü schließen':'Menü öffnen');};
 document.querySelectorAll('#hauptmenue a').forEach(a=>a.addEventListener('click',()=>{kopf.classList.remove('offen');mk.setAttribute('aria-expanded','false');mk.setAttribute('aria-label','Menü öffnen');}));
 // Vorschau: Stil wählen
-document.querySelectorAll('.vorschau button').forEach(b=>b.onclick=()=>{document.documentElement.dataset.stil=b.dataset.s;
-  document.querySelectorAll('.vorschau button').forEach(x=>x.setAttribute('aria-pressed',x===b));});
+document.querySelectorAll('.vorschau button').forEach(b=>b.onclick=()=>{
+  if(b.dataset.s)document.documentElement.dataset.stil=b.dataset.s;
+  if(b.dataset.h)document.documentElement.dataset.held=b.dataset.h;
+  document.querySelectorAll('.vorschau button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  document.querySelector('.einstieg').scrollIntoView({block:'start'});});
 })();
 </script>
 </body>
